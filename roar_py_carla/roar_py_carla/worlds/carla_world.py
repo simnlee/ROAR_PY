@@ -88,8 +88,10 @@ class RoarPyCarlaWorld(RoarPyWorld):
         waypoint_file = waypoint_asset_dir + "/" + self.map_name + ".npz"
         if os.path.exists(waypoint_file):
             way_points = np.load(waypoint_file)
+            print(f"Loading waypoint file from {waypoint_file}")
             return RoarPyWaypoint.load_waypoint_list(way_points)
         
+        print("Waypoint file not found.Generating maneuverable waypoints from spawn points...")
         spawn_points = self.spawn_points
         num_spawn_points = len(spawn_points)
 
