@@ -273,6 +273,7 @@ class RoarPyCarlaWorld(RoarPyWorld):
         spawn_point_asset_dir = __class__.ASSET_DIR + "/spawn_points"
         spawn_point_file = spawn_point_asset_dir + "/" + self.map_name + ".npz"
         if os.path.exists(spawn_point_file):
+            print(f"Loading spawn point file from {spawn_point_file}")
             spawn_points = np.load(spawn_point_file)
             ret = []
             for i in range(len(spawn_points["locations"])):
@@ -280,7 +281,7 @@ class RoarPyCarlaWorld(RoarPyWorld):
                 rotation = spawn_points["rotations"][i]
                 ret.append((location, rotation))
             return ret
-
+        print("Spawn point file not found. Using native spawn points from CARLA map...")
         native_spawn_points = self._native_carla_map.get_spawn_points()
         ret = []
         for native_spawn_point in native_spawn_points:
