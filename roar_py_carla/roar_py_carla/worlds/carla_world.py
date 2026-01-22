@@ -10,6 +10,8 @@ from roar_py_interface import RoarPyActor, RoarPySensor, roar_py_thread_sync, ro
 from roar_py_interface.sensors import *
 from ..actors import RoarPyCarlaVehicle, RoarPyCarlaActor
 from ..sensors import *
+if typing.TYPE_CHECKING:
+    from ..clients import RoarPyCarlaInstance
 from functools import cached_property
 import networkx as nx
 from ..utils import *
